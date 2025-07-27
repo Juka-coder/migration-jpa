@@ -1,14 +1,14 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
+@Table(name = "seller")
 public class Seller {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;
@@ -17,15 +17,15 @@ public class Seller {
 
     @ManyToOne
     @JoinColumn(name = "DepartmentId")
-    private Departmant departmant;
+    private Department department;
 
-    public Seller(Long id, String name, String email, LocalDate birthDate, Double baseSalary, Departmant departmant) {
+    public Seller(Long id, String name, String email, LocalDate birthDate, Double baseSalary, Department department) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.birthDate = birthDate;
         this.baseSalary = baseSalary;
-        this.departmant = departmant;
+        this.department = department;
     }
 
     public Seller() {
@@ -71,12 +71,12 @@ public class Seller {
         this.baseSalary = baseSalary;
     }
 
-    public Departmant getDepartmant() {
-        return departmant;
+    public Department getDepartmant() {
+        return department;
     }
 
-    public void setDepartmant(Departmant departmant) {
-        this.departmant = departmant;
+    public void setDepartmant(Department department) {
+        this.department = department;
     }
 
     @Override
@@ -87,7 +87,7 @@ public class Seller {
                 ", email='" + email + '\'' +
                 ", birthDate=" + birthDate +
                 ", baseSalary=" + baseSalary +
-                ", departmant=" + departmant +
+                ", departmant=" + department +
                 '}';
     }
 }

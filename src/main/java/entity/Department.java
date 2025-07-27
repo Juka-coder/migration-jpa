@@ -1,25 +1,26 @@
 package entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+
+import jakarta.persistence.*;
+
 import java.util.List;
 
 @Entity
-public class Departmant {
+@Table(name = "department")
+public class Department {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
     @OneToMany(mappedBy = "department")
     private List<Seller> sellers;
 
-    public Departmant() {
+    public Department() {
     }
 
-    public Departmant(String name, Long id) {
+    public Department(String name, Long id) {
         this.name = name;
         this.id = id;
     }
